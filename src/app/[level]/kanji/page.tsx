@@ -1,0 +1,63 @@
+import type { Metadata } from "next";
+import { PageHeader } from "@/components/layout/page-header";
+import { DataTable, type Column } from "@/components/study/data-table";
+import { ButtonLink } from "@/components/ui/button";
+import { PrintButton } from "@/components/ui/print-button";
+import { getSection } from "@/config/sections";
+import { formatReadings, getKanji } from "@/lib/kanji";
+import { requireLevel, routes } from "@/lib/routes";
+
+type Props = PageProps<"/[level]/kanji">;
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  return { title: `Kanji · ${requireLevel((await params).level).label}` };
+}
+
+const columns: Column[] = [
+  { key: "n", header: "#", hideOnMobile: true, className: "w-12 tabular-nums" },
+  { key: "kanji", header: "Kanji", japanese: true, large: true, className: "w-20" },
+  { key: "meaning", header: "Meaning" },
+  { key: "onyomi", header: "On'yomi", japanese: true },
+  { key: "kunyomi", header: "Kun'yomi", japanese: true },
+];
+
+export default async function KanjiPage({ params }: Props) {
+  const level = requireLevel((await params).level);
+  const section = getSection("kanji");
+  const entries = getKanji(level.id);
+
+  const rows = entries.map((entry, i) => ({
+    id: entry.id,
+    cells: {
+      n: String(i + 1),
+      kanji: entry.kanji,
+      meaning: entry.meaning,
+      onyomi: formatReadings(entry.onyomi),
+      kunyomi: formatReadings(entry.kunyomi),
+    },
+  }));
+
+  return (
+    <div className="mx-auto w-full max-w-3xl py-8 sm:py-12">
+      <p className="mb-4 hidden text-sm print:block">JLPTFlashcards · {level.label} Kanji</p>
+      <PageHeader
+        eyebrow={section.jp}
+        title={section.title}
+        description={`${entries.length} kanji, in the order they were studied. On'yomi are shown in katakana, kun'yomi in hiragana.`}
+        breadcrumbs={[
+          { label: "Home", href: routes.home },
+          { label: level.label, href: routes.level(level.id) },
+          { label: section.title },
+        ]}
+        actions={
+          <>
+            <ButtonLink href={routes.kanjiFlashcards(level.id)}>Start flashcards</ButtonLink>
+            <PrintButton />
+          </>
+        }
+      />
+
+      <DataTable caption={`${level.label} kanji`} columns={columns} rows={rows} centerRows />
+    </div>
+  );
+}

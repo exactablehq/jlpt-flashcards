@@ -1,0 +1,6 @@
+Stroke-order data in this folder is derived from KanjiVG.
+KanjiVG is copyright (C) Ulrich Apel and released under the Creative Commons
+Attribution-Share Alike 3.0 licence: https://creativecommons.org/licenses/by-sa/3.0/
+Website: https://kanjivg.tagaini.net
+
+These files are distributed under the same licence.

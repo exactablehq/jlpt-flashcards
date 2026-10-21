@@ -1,0 +1,357 @@
+[
+  {
+    "japanese": "あ",
+    "reading": "a",
+    "group": "basic"
+  },
+  {
+    "japanese": "い",
+    "reading": "i",
+    "group": "basic"
+  },
+  {
+    "japanese": "う",
+    "reading": "u",
+    "group": "basic"
+  },
+  {
+    "japanese": "え",
+    "reading": "e",
+    "group": "basic"
+  },
+  {
+    "japanese": "お",
+    "reading": "o",
+    "group": "basic"
+  },
+  {
+    "japanese": "か",
+    "reading": "ka",
+    "group": "basic"
+  },
+  {
+    "japanese": "き",
+    "reading": "ki",
+    "group": "basic"
+  },
+  {
+    "japanese": "く",
+    "reading": "ku",
+    "group": "basic"
+  },
+  {
+    "japanese": "け",
+    "reading": "ke",
+    "group": "basic"
+  },
+  {
+    "japanese": "こ",
+    "reading": "ko",
+    "group": "basic"
+  },
+  {
+    "japanese": "さ",
+    "reading": "sa",
+    "group": "basic"
+  },
+  {
+    "japanese": "し",
+    "reading": "shi",
+    "group": "basic"
+  },
+  {
+    "japanese": "す",
+    "reading": "su",
+    "group": "basic"
+  },
+  {
+    "japanese": "せ",
+    "reading": "se",
+    "group": "basic"
+  },
+  {
+    "japanese": "そ",
+    "reading": "so",
+    "group": "basic"
+  },
+  {
+    "japanese": "た",
+    "reading": "ta",
+    "group": "basic"
+  },
+  {
+    "japanese": "ち",
+    "reading": "chi",
+    "group": "basic"
+  },
+  {
+    "japanese": "つ",
+    "reading": "tsu",
+    "group": "basic"
+  },
+  {
+    "japanese": "て",
+    "reading": "te",
+    "group": "basic"
+  },
+  {
+    "japanese": "と",
+    "reading": "to",
+    "group": "basic"
+  },
+  {
+    "japanese": "な",
+    "reading": "na",
+    "group": "basic"
+  },
+  {
+    "japanese": "に",
+    "reading": "ni",
+    "group": "basic"
+  },
+  {
+    "japanese": "ぬ",
+    "reading": "nu",
+    "group": "basic"
+  },
+  {
+    "japanese": "ね",
+    "reading": "ne",
+    "group": "basic"
+  },
+  {
+    "japanese": "の",
+    "reading": "no",
+    "group": "basic"
+  },
+  {
+    "japanese": "は",
+    "reading": "ha",
+    "group": "basic"
+  },
+  {
+    "japanese": "ひ",
+    "reading": "hi",
+    "group": "basic"
+  },
+  {
+    "japanese": "ふ",
+    "reading": "fu",
+    "group": "basic"
+  },
+  {
+    "japanese": "へ",
+    "reading": "he",
+    "group": "basic"
+  },
+  {
+    "japanese": "ほ",
+    "reading": "ho",
+    "group": "basic"
+  },
+  {
+    "japanese": "ま",
+    "reading": "ma",
+    "group": "basic"
+  },
+  {
+    "japanese": "み",
+    "reading": "mi",
+    "group": "basic"
+  },
+  {
+    "japanese": "む",
+    "reading": "mu",
+    "group": "basic"
+  },
+  {
+    "japanese": "め",
+    "reading": "me",
+    "group": "basic"
+  },
+  {
+    "japanese": "も",
+    "reading": "mo",
+    "group": "basic"
+  },
+  {
+    "japanese": "や",
+    "reading": "ya",
+    "group": "basic"
+  },
+  {
+    "japanese": "ゆ",
+    "reading": "yu",
+    "group": "basic"
+  },
+  {
+    "japanese": "よ",
+    "reading": "yo",
+    "group": "basic"
+  },
+  {
+    "japanese": "ら",
+    "reading": "ra",
+    "group": "basic"
+  },
+  {
+    "japanese": "り",
+    "reading": "ri",
+    "group": "basic"
+  },
+  {
+    "japanese": "る",
+    "reading": "ru",
+    "group": "basic"
+  },
+  {
+    "japanese": "れ",
+    "reading": "re",
+    "group": "basic"
+  },
+  {
+    "japanese": "ろ",
+    "reading": "ro",
+    "group": "basic"
+  },
+  {
+    "japanese": "わ",
+    "reading": "wa",
+    "group": "basic"
+  },
+  {
+    "japanese": "を",
+    "reading": "o",
+    "group": "basic"
+  },
+  {
+    "japanese": "ん",
+    "reading": "n",
+    "group": "basic"
+  },
+  {
+    "japanese": "が",
+    "reading": "ga",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "ぎ",
+    "reading": "gi",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "ぐ",
+    "reading": "gu",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "げ",
+    "reading": "ge",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "ご",
+    "reading": "go",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "ざ",
+    "reading": "za",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "じ",
+    "reading": "ji",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "ず",
+    "reading": "zu",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "ぜ",
+    "reading": "ze",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "ぞ",
+    "reading": "zo",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "だ",
+    "reading": "da",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "ぢ",
+    "reading": "ji",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "づ",
+    "reading": "zu",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "で",
+    "reading": "de",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "ど",
+    "reading": "do",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "ば",
+    "reading": "ba",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "び",
+    "reading": "bi",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "ぶ",
+    "reading": "bu",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "べ",
+    "reading": "be",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "ぼ",
+    "reading": "bo",
+    "group": "dakuten"
+  },
+  {
+    "japanese": "ぱ",
+    "reading": "pa",
+    "group": "handakuten"
+  },
+  {
+    "japanese": "ぴ",
+    "reading": "pi",
+    "group": "handakuten"
+  },
+  {
+    "japanese": "ぷ",
+    "reading": "pu",
+    "group": "handakuten"
+  },
+  {
+    "japanese": "ぺ",
+    "reading": "pe",
+    "group": "handakuten"
+  },
+  {
+    "japanese": "ぽ",
+    "reading": "po",
+    "group": "handakuten"
+  }
+]

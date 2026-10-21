@@ -1,26 +1,258 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens. The palette is sampled from the watercolor background
+ * (paper ≈ #f6f3ee) so content blends into it instead of sitting on top of it.
+ * The site is intentionally light-only to match the artwork.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f6f3ee;
+  --surface: rgb(255 253 250 / 0.84);
+  --surface-strong: rgb(255 253 250 / 0.95);
+  --ink: #3b3236;
+  --ink-muted: #6b5f63;
+  --line: #e7ddd9;
+  --sakura: #e8a5b4;
+  --sakura-soft: #fbecef;
+  --accent: #ad4d66;
+  --accent-hover: #933a52;
+  --focus: #ad4d66;
 }
+
+/* Short viewports (e.g. 1280×720 laptops): tighten vertical spacing. */
+@custom-variant short (@media (max-height: 800px));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-sakura: var(--sakura);
+  --color-sakura-soft: var(--sakura-soft);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --font-sans: var(--font-zen-maru), "Hiragino Maru Gothic ProN", "Yu Gothic", sans-serif;
+  /* Elegant mincho serif for headings and the wordmark. */
+  --font-display: var(--font-mincho), "Hiragino Mincho ProN", "Yu Mincho", serif;
+  /* Textbook-style handwriting font for kana/kanji study content. */
+  --font-study: var(--font-klee), "Yu Kyokasho", "Hiragino Mincho ProN", serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/*
+ * Decorative watercolor background. The image URL is passed in as
+ * --bg-image (see SiteBackground) so it respects the GitHub Pages base path.
+ */
+.site-bg {
+  background-color: var(--paper);
+  background-image: var(--bg-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/*
+ * Portrait screens (phones, upright tablets): `cover` would crop away both
+ * trees. Instead, frame the screen like the desktop view: the blossoming
+ * branches reach in from the top corners and the misty water and rocks sit
+ * along the bottom, with plain paper in between for content.
+ * Each layer shows an enlarged slice of the artwork; heights follow its
+ * 1672 × 941 aspect ratio (scale × 0.563).
+ */
+@media (max-aspect-ratio: 1/1) {
+  /*
+   * Attach the frame to the page rather than the screen, so on long pages the
+   * branches stay at the top and the rocks sit behind the footer instead of
+   * behind the content.
+   */
+  .site-bg {
+    position: absolute;
+    background-image: none;
+  }
+
+  .site-bg::before,
+  .site-bg::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    background-image: var(--bg-image);
+    background-repeat: no-repeat;
+  }
+
+  /* Branches: enlarged so the blossoms reach in from both corners. */
+  .site-bg::before {
+    top: 0;
+    height: 107vw;
+    background-size: 190% auto;
+    background-position: top center;
+    mask-image: linear-gradient(to bottom, #000 36%, transparent 58%);
+  }
+
+  /* Water and rocks: less enlarged so the rocks at the edges stay in view. */
+  .site-bg::after {
+    bottom: 0;
+    height: 73vw;
+    background-size: 130% auto;
+    background-position: bottom center;
+    mask-image: linear-gradient(to bottom, transparent 45%, #000 75%);
+  }
+}
+
+/*
+ * Comic style: solid offset "cartoon" shadows instead of soft blurs.
+ * Pair with a 2px accent outline, e.g. `border-2 border-accent comic-shadow`.
+ */
+@utility comic-shadow-sm {
+  box-shadow: 2px 2px 0 0 rgb(173 77 102 / 0.3);
+}
+
+@utility comic-shadow {
+  box-shadow: 4px 4px 0 0 rgb(173 77 102 / 0.3);
+}
+
+@utility comic-shadow-lg {
+  box-shadow: 7px 7px 0 0 rgb(173 77 102 / 0.3);
+}
+
+@utility comic-shadow-none {
+  box-shadow: none;
+}
+
+/* Comic heading text: a solid pink offset shadow. */
+@utility comic-text {
+  text-shadow: 3px 3px 0 rgb(232 165 180 / 0.45);
+}
+
+/* Study tables (see DataTable). Styled here once instead of on every cell. */
+.study-table th {
+  @apply border-b-2 border-accent/50 px-4 py-3 text-xs font-medium tracking-wider text-ink-muted uppercase sm:px-5 print:border-black print:py-1.5 print:text-black;
+}
+
+.study-table td {
+  @apply px-4 py-2.5 align-top text-ink-muted sm:px-5 print:py-1 print:text-black;
+}
+
+.study-table td.jp {
+  @apply font-study text-lg break-keep text-ink print:text-base print:text-black;
+}
+
+.study-table tbody tr {
+  @apply border-b border-line/70 last:border-0 even:bg-sakura-soft/35 print:border-neutral-300;
+}
+
+.study-table .mobile-hidden {
+  @apply hidden sm:table-cell print:table-cell;
+}
+
+/* Kanji stroke-order animation: each path (pathLength=1) is drawn from start to end. */
+.stroke-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation-name: stroke-draw;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes stroke-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.study-table-center td {
+  vertical-align: middle;
+}
+
+/* Large single characters in study tables (e.g. the kanji column). */
+.study-table td.jp.jp-lg {
+  @apply text-3xl leading-tight print:text-2xl;
+}
+
+/* Kana chart cells. */
+.kana-chart th {
+  @apply pb-2 text-xs font-medium tracking-wider text-ink-muted uppercase print:text-black;
+}
+
+.kana-chart td {
+  @apply border-2 border-sakura/50 p-0 text-center print:border print:border-neutral-400;
+}
+
+/*
+ * Baby Casper (homepage) sits in the bottom-left corner. Below 1280px the
+ * centered footer text would reach him, so leave room under the footer.
+ */
+@media (max-width: 1279px) {
+  body:has(.casper) > footer {
+    padding-bottom: 12rem;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/*
+ * Print / Save as PDF: plain black on white, no decoration or controls.
+ * Mark anything that should not print with the `no-print` class.
+ */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .no-print,
+  .site-bg {
+    display: none !important;
+  }
+
+  .print-plain {
+    background: #fff !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  td,
+  th {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
 }

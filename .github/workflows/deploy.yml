@@ -35,15 +35,15 @@ jobs:
 
       # Project sites live at https://<user>.github.io/<repo>/, so pages need a
       # /<repo> base path. A repo named <user>.github.io is served from the root.
-      - name: Work out base path
-        id: base
-        run: |
-          repo="${{ github.event.repository.name }}"
-          if [[ "$repo" == *.github.io ]]; then echo "path=" >> "$GITHUB_OUTPUT"; else echo "path=/$repo" >> "$GITHUB_OUTPUT"; fi
+      # - name: Work out base path
+      #   id: base
+      #   run: |
+      #     repo="${{ github.event.repository.name }}"
+      #     if [[ "$repo" == *.github.io ]]; then echo "path=" >> "$GITHUB_OUTPUT"; else echo "path=/$repo" >> "$GITHUB_OUTPUT"; fi
 
       - name: Build static site
-        env:
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.base.outputs.path }}
+        # env:
+        #   NEXT_PUBLIC_BASE_PATH: ${{ steps.base.outputs.path }}
         run: npm run build
 
       - name: Upload site

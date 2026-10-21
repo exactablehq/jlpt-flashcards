@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 // When hosted on GitHub Pages under a project URL (https://<user>.github.io/<repo>/),
 // set NEXT_PUBLIC_BASE_PATH=/<repo> at build time. Leave it unset for local dev.
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+// const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const nextConfig: NextConfig = {
   // Generate a fully static site into the `out` folder on `next build`.
@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath,
+  // basePath,
   turbopack: {
     rules: {
       "*.css": {

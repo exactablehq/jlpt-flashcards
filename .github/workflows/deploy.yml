@@ -15,7 +15,7 @@ permissions:
 # Let an in-progress deployment finish instead of cancelling it midway.
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:

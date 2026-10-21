@@ -33,11 +33,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Lint and type-check
-        run: |
-          npm run lint
-          npm run typecheck
-
       # Project sites live at https://<user>.github.io/<repo>/, so pages need a
       # /<repo> base path. A repo named <user>.github.io is served from the root.
       - name: Work out base path

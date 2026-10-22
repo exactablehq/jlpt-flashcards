@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/page-header";
 import { CategoryNav } from "@/components/study/category-nav";
 import { DataTable, type Column } from "@/components/study/data-table";
+import { DictionaryCredit } from "@/components/study/dictionary-credit";
 import { ListBuddy } from "@/components/study/list-buddy";
 import { ButtonLink } from "@/components/ui/button";
 import { PrintButton } from "@/components/ui/print-button";
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         ? `${level.label} Verbs List: Group 1, 2 & 3 (${n} Verbs)`
         : `${level.label} ${category.label} List (${n} Words)`,
     description: isAll
-      ? `All ${n} ${level.label} vocabulary words with English meanings, grouped by type with a filter. Free printable list and flashcards in lesson-sized sets.`
+      ? `All ${n} ${level.label} vocabulary words with English meanings, grouped by type with a filter. Free printable list and flashcards in sets of about 50.`
       : `All ${n} ${level.label} ${category.label.toLowerCase()} with English meanings, in the order they're studied. Free printable list and flashcards.`,
     path: routes.vocabCategory(level.id, category.slug),
   });
@@ -88,6 +89,7 @@ export default async function CategoryWordList({ params }: Props) {
       <DataTable caption={`${level.label} vocabulary: ${category.label}`} columns={columns} rows={rows} />
 
       <CategoryNav level={level.id} current={category.slug} view="list" />
+      <DictionaryCredit source="JMdict" />
       <ListBuddy />
     </div>
   );

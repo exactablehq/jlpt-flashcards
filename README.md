@@ -39,7 +39,8 @@ data/                     Study data (source of truth; never modified by the sit
   N5_vocab.json           809 N5 vocabulary entries
   N5_hiragana.json        71 hiragana
   N5_katakana.json        71 katakana
-  N5_kanji.json           110 kanji
+  N5_kanji_main.json      110 kanji shown on the site (kun'yomi with okurigana)
+  N5_kanji.json           Same 110 kanji; used to download stroke-order data
 scripts/                  Maintenance scripts (stroke-order data download)
 assets/originals/         Original artwork (kept in the repo, not deployed)
 public/images/            Optimised images that are deployed
@@ -61,7 +62,11 @@ groups, mismatched counts) stop the build with a clear message. The files are ne
 - **Vocabulary:** `data/N5_vocab.json`.
 - **Hiragana / Katakana:** `data/N5_hiragana.json`, `data/N5_katakana.json` — `{ japanese, reading, group }`.
   The chart layout comes from the file order and each romaji's vowel.
-- **Kanji:** `data/N5_kanji.json` — `{ kanji, meaning, onyomi, kunyomi }`; `-` means no reading.
+- **Kanji:** `data/N5_kanji_main.json` — `{ kanji, meaning, onyomi, kunyomi }`; `-` or `—` means no reading.
+
+English meanings in the vocabulary and kanji files come from the JMdict and KANJIDIC2 dictionaries
+(Electronic Dictionaries Research Group, CC BY-SA 4.0), so those files are shared under CC BY-SA 4.0
+and the site credits the source on every vocabulary and kanji page. See [LICENSE](LICENSE).
 
 Kana and kanji entries have no `id` field, so the character itself (unique per file) is used as the
 stable ID for flashcard progress.

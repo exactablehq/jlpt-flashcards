@@ -28,8 +28,8 @@ export interface VocabEntry {
   meaning: string;
   type: VocabType;
   verbGroup: VerbGroup | null;
-  /** Textbook lesson the word was studied in, e.g. "Lesson 1". */
-  lesson: string;
+  /** Study set the word belongs to (1, 2, 3…), in the order the words were learned. */
+  set: number;
 }
 
 export interface VocabCategory {
@@ -137,8 +137,8 @@ export function parseVocabFile(raw: unknown, expectedLevel: string, source: stri
       problems.push(`${where}: missing japanese`);
       ok = false;
     }
-    if (!isNonEmptyString(e.lesson)) {
-      problems.push(`${where}: missing lesson`);
+    if (typeof e.set !== "number" || !Number.isInteger(e.set) || e.set < 1) {
+      problems.push(`${where}: set should be a whole number from 1`);
       ok = false;
     }
     if (!isNonEmptyString(e.meaning)) {
@@ -167,7 +167,7 @@ export function parseVocabFile(raw: unknown, expectedLevel: string, source: stri
         meaning: e.meaning as string,
         type: e.type as VocabType,
         verbGroup: (e.verb_group as VerbGroup | null) ?? null,
-        lesson: e.lesson as string,
+        set: e.set as number,
       });
     }
   });

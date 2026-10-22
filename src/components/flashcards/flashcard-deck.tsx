@@ -18,7 +18,7 @@ import { StrokeOrderButton } from "./stroke-order";
 
 interface DeckProps {
   cards: DeckCard[];
-  /** Fixed sets of card IDs (e.g. whole lessons). Defaults to even sets of about 50 in card order. */
+  /** Fixed sets of card IDs (e.g. whole study sets). Defaults to even sets of about 50 in card order. */
   sets?: string[][];
   /** Unique per deck, e.g. "n5:vocabulary:verbs", so progress is kept separately. */
   storageKey: string;

@@ -54,12 +54,15 @@ export function toVocabCards(entries: readonly VocabEntry[], { showType }: { sho
   }));
 }
 
-/** Flashcard sets of about 50 words, made of whole lessons in study order. */
-export function toLessonSets(entries: readonly VocabEntry[]): string[][] {
-  const lessons: string[][] = [];
+/**
+ * Flashcard sets of about 50 words. Each word's study set (the `set` field) is kept
+ * whole; small study sets are combined so flashcard sets come out close to 50.
+ */
+export function toFlashcardSets(entries: readonly VocabEntry[]): string[][] {
+  const studySets: string[][] = [];
   entries.forEach((entry, i) => {
-    if (i === 0 || entry.lesson !== entries[i - 1].lesson) lessons.push([]);
-    lessons[lessons.length - 1].push(entry.id);
+    if (i === 0 || entry.set !== entries[i - 1].set) studySets.push([]);
+    studySets[studySets.length - 1].push(entry.id);
   });
-  return packGroups(lessons);
+  return packGroups(studySets);
 }

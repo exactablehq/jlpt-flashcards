@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { FlashcardDeck } from "@/components/flashcards/flashcard-deck";
 import { StrokeOrderCredit } from "@/components/flashcards/stroke-order-credit";
+import { DictionaryCredit } from "@/components/study/dictionary-credit";
 import { PageHeader } from "@/components/layout/page-header";
 import { ButtonLink } from "@/components/ui/button";
 import { getSection } from "@/config/sections";
@@ -50,6 +51,7 @@ export default async function KanjiFlashcardsPage({ params }: Props) {
       />
 
       <StrokeOrderCredit />
+      <DictionaryCredit source="KANJIDIC2" />
     </div>
   );
 }

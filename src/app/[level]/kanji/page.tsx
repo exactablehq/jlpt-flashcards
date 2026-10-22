@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/page-header";
 import { DataTable, type Column } from "@/components/study/data-table";
+import { DictionaryCredit } from "@/components/study/dictionary-credit";
 import { ListBuddy } from "@/components/study/list-buddy";
 import { ButtonLink } from "@/components/ui/button";
 import { PrintButton } from "@/components/ui/print-button";
@@ -81,6 +82,7 @@ export default async function KanjiPage({ params }: Props) {
       />
 
       <DataTable caption={`${level.label} kanji`} columns={columns} rows={rows} details={details} centerRows />
+      <DictionaryCredit source="KANJIDIC2" />
       <ListBuddy />
     </div>
   );

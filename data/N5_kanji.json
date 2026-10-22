@@ -4,769 +4,769 @@
     "meaning": "mountain",
     "kunyomi": "やま",
     "onyomi": "サン",
-    "lesson": 1
+    "set": 1
   },
   {
     "kanji": "川",
     "meaning": "river",
     "kunyomi": "かわ",
     "onyomi": "セン",
-    "lesson": 1
+    "set": 1
   },
   {
     "kanji": "田",
     "meaning": "rice field",
     "kunyomi": "た",
     "onyomi": "デン",
-    "lesson": 1
+    "set": 1
   },
   {
     "kanji": "日",
     "meaning": "sun/day",
     "kunyomi": "ひ、び",
     "onyomi": "ニチ、ニ、 ジツ",
-    "lesson": 1
+    "set": 1
   },
   {
     "kanji": "月",
     "meaning": "moon/month",
     "kunyomi": "つき",
     "onyomi": "ゲツ、ガツ",
-    "lesson": 1
+    "set": 1
   },
   {
     "kanji": "火",
     "meaning": "fire",
     "kunyomi": "ひ",
     "onyomi": "カ",
-    "lesson": 1
+    "set": 1
   },
   {
     "kanji": "水",
     "meaning": "water",
     "kunyomi": "みず",
     "onyomi": "スイ",
-    "lesson": 1
+    "set": 1
   },
   {
     "kanji": "木",
     "meaning": "tree",
     "kunyomi": "き、こ",
     "onyomi": "モク、ボク",
-    "lesson": 1
+    "set": 1
   },
   {
     "kanji": "金",
     "meaning": "gold/money",
     "kunyomi": "かね、かな",
     "onyomi": "キン、コン",
-    "lesson": 1
+    "set": 1
   },
   {
     "kanji": "土",
     "meaning": "earth/soil",
     "kunyomi": "つち",
     "onyomi": "ド、ト",
-    "lesson": 1
+    "set": 1
   },
   {
     "kanji": "一",
     "meaning": "one",
     "kunyomi": "ひと",
     "onyomi": "イチ、イツ",
-    "lesson": 2
+    "set": 2
   },
   {
     "kanji": "二",
     "meaning": "two",
     "kunyomi": "ふた",
     "onyomi": "ニ",
-    "lesson": 2
+    "set": 2
   },
   {
     "kanji": "三",
     "meaning": "three",
     "kunyomi": "みっ-っ",
     "onyomi": "サン",
-    "lesson": 2
+    "set": 2
   },
   {
     "kanji": "四",
     "meaning": "four",
     "kunyomi": "よん、よ、よっ",
     "onyomi": "シ",
-    "lesson": 2
+    "set": 2
   },
   {
     "kanji": "五",
     "meaning": "five",
     "kunyomi": "いつ",
     "onyomi": "ゴ",
-    "lesson": 2
+    "set": 2
   },
   {
     "kanji": "六",
     "meaning": "six",
     "kunyomi": "むっ、むい",
     "onyomi": "ロク",
-    "lesson": 2
+    "set": 2
   },
   {
     "kanji": "七",
     "meaning": "seven",
     "kunyomi": "なな、なの",
     "onyomi": "シチ",
-    "lesson": 2
+    "set": 2
   },
   {
     "kanji": "八",
     "meaning": "eight",
     "kunyomi": "やっ、よう",
     "onyomi": "ハチ",
-    "lesson": 2
+    "set": 2
   },
   {
     "kanji": "九",
     "meaning": "nine",
     "kunyomi": "ここの",
     "onyomi": "キュウ、ク",
-    "lesson": 2
+    "set": 2
   },
   {
     "kanji": "十",
     "meaning": "ten",
     "kunyomi": "とお",
     "onyomi": "ジュウ",
-    "lesson": 2
+    "set": 2
   },
   {
     "kanji": "百",
     "meaning": "hundred",
     "kunyomi": "-",
     "onyomi": "ヒャク",
-    "lesson": 3
+    "set": 3
   },
   {
     "kanji": "千",
     "meaning": "thousand",
     "kunyomi": "-",
     "onyomi": "セン",
-    "lesson": 3
+    "set": 3
   },
   {
     "kanji": "万",
     "meaning": "ten thousand",
     "kunyomi": "-",
     "onyomi": "マン、バン",
-    "lesson": 3
+    "set": 3
   },
   {
     "kanji": "円",
     "meaning": "yen/circle",
     "kunyomi": "まる",
     "onyomi": "エン",
-    "lesson": 3
+    "set": 3
   },
   {
     "kanji": "年",
     "meaning": "year",
     "kunyomi": "とし",
     "onyomi": "ネン",
-    "lesson": 3
+    "set": 3
   },
   {
     "kanji": "上",
     "meaning": "up",
     "kunyomi": "うえ、あ、のぼ",
     "onyomi": "ジョウ",
-    "lesson": 3
+    "set": 3
   },
   {
     "kanji": "下",
     "meaning": "down",
     "kunyomi": "した、さ、くだ",
     "onyomi": "カ、ゲ",
-    "lesson": 3
+    "set": 3
   },
   {
     "kanji": "中",
     "meaning": "middle/inside",
     "kunyomi": "なか",
     "onyomi": "チュウ、ジュウ",
-    "lesson": 3
+    "set": 3
   },
   {
     "kanji": "半",
     "meaning": "half",
     "kunyomi": "-",
     "onyomi": "ハン",
-    "lesson": 3
+    "set": 3
   },
   {
     "kanji": "分",
     "meaning": "minute/divide",
     "kunyomi": "わ",
     "onyomi": "ブン、フン、ブ",
-    "lesson": 3
+    "set": 3
   },
   {
     "kanji": "人",
     "meaning": "person",
     "kunyomi": "ひと",
     "onyomi": "ジン、ニン",
-    "lesson": 4
+    "set": 4
   },
   {
     "kanji": "子",
     "meaning": "child",
     "kunyomi": "こ",
     "onyomi": "シ",
-    "lesson": 4
+    "set": 4
   },
   {
     "kanji": "女",
     "meaning": "woman",
     "kunyomi": "おんな",
     "onyomi": "ジョ",
-    "lesson": 4
+    "set": 4
   },
   {
     "kanji": "男",
     "meaning": "man",
     "kunyomi": "おとこ",
     "onyomi": "ダン、ナン",
-    "lesson": 4
+    "set": 4
   },
   {
     "kanji": "目",
     "meaning": "eye",
     "kunyomi": "め",
     "onyomi": "モク",
-    "lesson": 4
+    "set": 4
   },
   {
     "kanji": "口",
     "meaning": "mouth",
     "kunyomi": "くち",
     "onyomi": "コウ",
-    "lesson": 4
+    "set": 4
   },
   {
     "kanji": "耳",
     "meaning": "ear",
     "kunyomi": "みみ",
     "onyomi": "ジ",
-    "lesson": 4
+    "set": 4
   },
   {
     "kanji": "手",
     "meaning": "hand",
     "kunyomi": "て",
     "onyomi": "シュ",
-    "lesson": 4
+    "set": 4
   },
   {
     "kanji": "足",
     "meaning": "foot/leg",
     "kunyomi": "あし、た",
     "onyomi": "ソク",
-    "lesson": 4
+    "set": 4
   },
   {
     "kanji": "力",
     "meaning": "power",
     "kunyomi": "ちから",
     "onyomi": "リョク、リキ",
-    "lesson": 4
+    "set": 4
   },
   {
     "kanji": "父",
     "meaning": "father",
     "kunyomi": "ちち",
     "onyomi": "フ",
-    "lesson": 5
+    "set": 5
   },
   {
     "kanji": "母",
     "meaning": "mother",
     "kunyomi": "はは",
     "onyomi": "ボ",
-    "lesson": 5
+    "set": 5
   },
   {
     "kanji": "先",
     "meaning": "previous",
     "kunyomi": "さき",
     "onyomi": "セン",
-    "lesson": 5
+    "set": 5
   },
   {
     "kanji": "生",
     "meaning": "life/birth",
     "kunyomi": "い、う",
     "onyomi": "セイ",
-    "lesson": 5
+    "set": 5
   },
   {
     "kanji": "学",
     "meaning": "study",
     "kunyomi": "まな",
     "onyomi": "ガク",
-    "lesson": 5
+    "set": 5
   },
   {
     "kanji": "校",
     "meaning": "school",
     "kunyomi": "-",
     "onyomi": "コウ",
-    "lesson": 5
+    "set": 5
   },
   {
     "kanji": "友",
     "meaning": "friend",
     "kunyomi": "とも",
     "onyomi": "ユウ",
-    "lesson": 5
+    "set": 5
   },
   {
     "kanji": "本",
     "meaning": "book",
     "kunyomi": "もと",
     "onyomi": "ホン",
-    "lesson": 5
+    "set": 5
   },
   {
     "kanji": "毎",
     "meaning": "every",
     "kunyomi": "-",
     "onyomi": "マイ",
-    "lesson": 5
+    "set": 5
   },
   {
     "kanji": "何",
     "meaning": "what",
     "kunyomi": "なに、なん",
     "onyomi": "カ",
-    "lesson": 5
+    "set": 5
   },
   {
     "kanji": "前",
     "meaning": "before/front",
     "kunyomi": "まえ",
     "onyomi": "ゼン",
-    "lesson": 6
+    "set": 6
   },
   {
     "kanji": "後",
     "meaning": "after/back",
     "kunyomi": "うし、あと",
     "onyomi": "ゴ、コウ",
-    "lesson": 6
+    "set": 6
   },
   {
     "kanji": "外",
     "meaning": "outside",
     "kunyomi": "そと、ほか",
     "onyomi": "ガイ",
-    "lesson": 6
+    "set": 6
   },
   {
     "kanji": "左",
     "meaning": "left",
     "kunyomi": "ひだり",
     "onyomi": "サ",
-    "lesson": 6
+    "set": 6
   },
   {
     "kanji": "右",
     "meaning": "right",
     "kunyomi": "みぎ",
     "onyomi": "ウ、ユウ",
-    "lesson": 6
+    "set": 6
   },
   {
     "kanji": "東",
     "meaning": "east",
     "kunyomi": "ひがし",
     "onyomi": "トウ",
-    "lesson": 6
+    "set": 6
   },
   {
     "kanji": "西",
     "meaning": "west",
     "kunyomi": "にし",
     "onyomi": "セイ、サイ",
-    "lesson": 6
+    "set": 6
   },
   {
     "kanji": "南",
     "meaning": "south",
     "kunyomi": "みなみ",
     "onyomi": "ナン",
-    "lesson": 6
+    "set": 6
   },
   {
     "kanji": "北",
     "meaning": "north",
     "kunyomi": "きた",
     "onyomi": "ホク",
-    "lesson": 6
+    "set": 6
   },
   {
     "kanji": "名",
     "meaning": "name",
     "kunyomi": "な",
     "onyomi": "メイ、ミョウ",
-    "lesson": 6
+    "set": 6
   },
   {
     "kanji": "牛",
     "meaning": "cow",
     "kunyomi": "うし",
     "onyomi": "ギュウ",
-    "lesson": 7
+    "set": 7
   },
   {
     "kanji": "馬",
     "meaning": "horse",
     "kunyomi": "うま",
     "onyomi": "バ",
-    "lesson": 7
+    "set": 7
   },
   {
     "kanji": "魚",
     "meaning": "fish",
     "kunyomi": "さかな",
     "onyomi": "ギョ",
-    "lesson": 7
+    "set": 7
   },
   {
     "kanji": "貝",
     "meaning": "shellfish",
     "kunyomi": "かい",
     "onyomi": "-",
-    "lesson": 7
+    "set": 7
   },
   {
     "kanji": "雨",
     "meaning": "rain",
     "kunyomi": "あめ",
     "onyomi": "ウ",
-    "lesson": 7
+    "set": 7
   },
   {
     "kanji": "天",
     "meaning": "heaven",
     "kunyomi": "-",
     "onyomi": "テン",
-    "lesson": 7
+    "set": 7
   },
   {
     "kanji": "気",
     "meaning": "spirit",
     "kunyomi": "-",
     "onyomi": "キ",
-    "lesson": 7
+    "set": 7
   },
   {
     "kanji": "車",
     "meaning": "car",
     "kunyomi": "くるま",
     "onyomi": "シャ",
-    "lesson": 7
+    "set": 7
   },
   {
     "kanji": "門",
     "meaning": "gate",
     "kunyomi": "もん",
     "onyomi": "モン",
-    "lesson": 7
+    "set": 7
   },
   {
     "kanji": "午",
     "meaning": "noon",
     "kunyomi": "-",
     "onyomi": "ゴ",
-    "lesson": 7
+    "set": 7
   },
   {
     "kanji": "大",
     "meaning": "big",
     "kunyomi": "おお",
     "onyomi": "ダイ、タイ",
-    "lesson": 8
+    "set": 8
   },
   {
     "kanji": "小",
     "meaning": "small",
     "kunyomi": "ちい、こ",
     "onyomi": "ショウ",
-    "lesson": 8
+    "set": 8
   },
   {
     "kanji": "高",
     "meaning": "tall/expensive",
     "kunyomi": "たか",
     "onyomi": "コウ",
-    "lesson": 8
+    "set": 8
   },
   {
     "kanji": "安",
     "meaning": "cheap/safe",
     "kunyomi": "やす",
     "onyomi": "アン",
-    "lesson": 8
+    "set": 8
   },
   {
     "kanji": "新",
     "meaning": "new",
     "kunyomi": "あたら",
     "onyomi": "シン",
-    "lesson": 8
+    "set": 8
   },
   {
     "kanji": "古",
     "meaning": "old",
     "kunyomi": "ふる",
     "onyomi": "コ",
-    "lesson": 8
+    "set": 8
   },
   {
     "kanji": "長",
     "meaning": "long",
     "kunyomi": "なが",
     "onyomi": "チョウ",
-    "lesson": 8
+    "set": 8
   },
   {
     "kanji": "多",
     "meaning": "many",
     "kunyomi": "おお",
     "onyomi": "タ",
-    "lesson": 8
+    "set": 8
   },
   {
     "kanji": "少",
     "meaning": "few",
     "kunyomi": "すく、すこ",
     "onyomi": "ショウ",
-    "lesson": 8
+    "set": 8
   },
   {
     "kanji": "早",
     "meaning": "early",
     "kunyomi": "はや",
     "onyomi": "ソウ",
-    "lesson": 8
+    "set": 8
   },
   {
     "kanji": "行",
     "meaning": "go",
     "kunyomi": "い、ゆ",
     "onyomi": "コウ、ギョウ",
-    "lesson": 9
+    "set": 9
   },
   {
     "kanji": "来",
     "meaning": "come",
     "kunyomi": "く、き",
     "onyomi": "ライ",
-    "lesson": 9
+    "set": 9
   },
   {
     "kanji": "食",
     "meaning": "eat",
     "kunyomi": "た",
     "onyomi": "ショク",
-    "lesson": 9
+    "set": 9
   },
   {
     "kanji": "見",
     "meaning": "see",
     "kunyomi": "み",
     "onyomi": "ケン",
-    "lesson": 9
+    "set": 9
   },
   {
     "kanji": "入",
     "meaning": "enter",
     "kunyomi": "はい、い",
     "onyomi": "ニュウ",
-    "lesson": 9
+    "set": 9
   },
   {
     "kanji": "出",
     "meaning": "exit",
     "kunyomi": "で、だ",
     "onyomi": "シュツ",
-    "lesson": 9
+    "set": 9
   },
   {
     "kanji": "立",
     "meaning": "stand",
     "kunyomi": "た",
     "onyomi": "リツ",
-    "lesson": 9
+    "set": 9
   },
   {
     "kanji": "書",
     "meaning": "write",
     "kunyomi": "か",
     "onyomi": "ショ",
-    "lesson": 9
+    "set": 9
   },
   {
     "kanji": "言",
     "meaning": "say",
     "kunyomi": "い",
     "onyomi": "ゲン、ゴン",
-    "lesson": 9
+    "set": 9
   },
   {
     "kanji": "飲",
     "meaning": "drink",
     "kunyomi": "の",
     "onyomi": "イン",
-    "lesson": 9
+    "set": 9
   },
   {
     "kanji": "話",
     "meaning": "talk",
     "kunyomi": "はな、はなし",
     "onyomi": "ワ",
-    "lesson": 10
+    "set": 10
   },
   {
     "kanji": "読",
     "meaning": "read",
     "kunyomi": "よ",
     "onyomi": "ドク",
-    "lesson": 10
+    "set": 10
   },
   {
     "kanji": "語",
     "meaning": "language",
     "kunyomi": "かた",
     "onyomi": "ゴ",
-    "lesson": 10
+    "set": 10
   },
   {
     "kanji": "間",
     "meaning": "interval",
     "kunyomi": "あいだ、ま",
     "onyomi": "カン",
-    "lesson": 10
+    "set": 10
   },
   {
     "kanji": "聞",
     "meaning": "hear",
     "kunyomi": "き",
     "onyomi": "ブン",
-    "lesson": 10
+    "set": 10
   },
   {
     "kanji": "買",
     "meaning": "buy",
     "kunyomi": "か",
     "onyomi": "バイ",
-    "lesson": 10
+    "set": 10
   },
   {
     "kanji": "休",
     "meaning": "rest",
     "kunyomi": "やす",
     "onyomi": "キュウ",
-    "lesson": 10
+    "set": 10
   },
   {
     "kanji": "時",
     "meaning": "time",
     "kunyomi": "とき",
     "onyomi": "ジ",
-    "lesson": 10
+    "set": 10
   },
   {
     "kanji": "週",
     "meaning": "week",
     "kunyomi": "-",
     "onyomi": "シュウ",
-    "lesson": 10
+    "set": 10
   },
   {
     "kanji": "道",
     "meaning": "road",
     "kunyomi": "みち",
     "onyomi": "ドウ",
-    "lesson": 10
+    "set": 10
   },
   {
     "kanji": "今",
     "meaning": "now",
     "kunyomi": "いま",
     "onyomi": "コン",
-    "lesson": 11
+    "set": 11
   },
   {
     "kanji": "会",
     "meaning": "meet",
     "kunyomi": "あ",
     "onyomi": "カイ",
-    "lesson": 11
+    "set": 11
   },
   {
     "kanji": "社",
     "meaning": "company",
     "kunyomi": "やしろ",
     "onyomi": "シャ",
-    "lesson": 11
+    "set": 11
   },
   {
     "kanji": "店",
     "meaning": "shop",
     "kunyomi": "みせ",
     "onyomi": "テン",
-    "lesson": 11
+    "set": 11
   },
   {
     "kanji": "駅",
     "meaning": "station",
     "kunyomi": "-",
     "onyomi": "エキ",
-    "lesson": 11
+    "set": 11
   },
   {
     "kanji": "花",
     "meaning": "flower",
     "kunyomi": "はな",
     "onyomi": "カ",
-    "lesson": 11
+    "set": 11
   },
   {
     "kanji": "国",
     "meaning": "country",
     "kunyomi": "くに",
     "onyomi": "コク",
-    "lesson": 11
+    "set": 11
   },
   {
     "kanji": "白",
     "meaning": "white",
     "kunyomi": "しろ",
     "onyomi": "ハク",
-    "lesson": 11
+    "set": 11
   },
   {
     "kanji": "空",
     "meaning": "sky/empty",
     "kunyomi": "そら、から",
     "onyomi": "クウ",
-    "lesson": 11
+    "set": 11
   },
   {
     "kanji": "電",
     "meaning": "electricity",
     "kunyomi": "-",
     "onyomi": "デン",
-    "lesson": 11
+    "set": 11
   }
 ]

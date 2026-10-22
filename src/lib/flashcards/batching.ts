@@ -2,7 +2,7 @@
 // tested on its own, independent of React and the bundler.
 //
 // Every deck is split into fixed sets of about 50 cards, in study order:
-// vocabulary keeps whole lessons together, other decks are split evenly.
+// vocabulary keeps each study set together, other decks are split evenly.
 // A set always holds the same cards; its order is shuffled each time it is
 // opened. Learners can move freely between sets.
 
@@ -51,7 +51,7 @@ export function splitEvenly(ids: readonly string[], size = BATCH_SIZE): string[]
 }
 
 /**
- * Packs consecutive groups (e.g. lessons) into sets as close to BATCH_SIZE as
+ * Packs consecutive groups (e.g. study sets) into sets as close to BATCH_SIZE as
  * possible without splitting a group. Minimises the total squared distance
  * from BATCH_SIZE, so sets land around 35–65 instead of one tiny leftover.
  */

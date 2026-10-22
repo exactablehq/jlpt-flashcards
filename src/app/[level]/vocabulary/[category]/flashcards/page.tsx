@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { FlashcardDeck } from "@/components/flashcards/flashcard-deck";
 import { PageHeader } from "@/components/layout/page-header";
 import { CategoryNav } from "@/components/study/category-nav";
+import { DictionaryCredit } from "@/components/study/dictionary-credit";
 import { ButtonLink } from "@/components/ui/button";
 import { routes } from "@/lib/routes";
 import { pageMetadata } from "@/lib/seo";
-import { toLessonSets, toVocabCards } from "@/lib/vocabulary";
+import { toFlashcardSets, toVocabCards } from "@/lib/vocabulary";
 import { categoryStaticParams, resolveCategory } from "../params";
 
 export const dynamicParams = false;
@@ -30,8 +31,8 @@ export default async function CategoryFlashcards({ params }: Props) {
   const { level, category, entries } = await resolveCategory(params);
   const isAll = category.types === "all";
   const cards = toVocabCards(entries, { showType: isAll });
-  // Sets of about 50 words made of whole lessons, each shuffled when opened.
-  const sets = toLessonSets(entries);
+  // Sets of about 50 words that keep each study set whole, each shuffled when opened.
+  const sets = toFlashcardSets(entries);
 
   return (
     <div className="mx-auto w-full max-w-3xl py-6 sm:py-10">
@@ -55,11 +56,13 @@ export default async function CategoryFlashcards({ params }: Props) {
       <FlashcardDeck
         cards={cards}
         sets={sets}
+        // The ":lessons" suffix is an old name, kept so saved progress isn't lost.
         storageKey={`${level.id}:vocabulary:${category.slug}${isAll ? ":lessons" : ""}`}
         noun="words"
       />
 
       <CategoryNav level={level.id} current={category.slug} view="flashcards" />
+      <DictionaryCredit source="JMdict" />
     </div>
   );
 }

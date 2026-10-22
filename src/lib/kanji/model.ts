@@ -5,7 +5,7 @@ export interface KanjiEntry {
   id: string;
   kanji: string;
   meaning: string;
-  /** Empty when the source has "-" (no reading of that kind). */
+  /** Empty when the source has "-" or "—" (no reading of that kind). */
   onyomi: string[];
   kunyomi: string[];
 }
@@ -17,9 +17,9 @@ export class KanjiDataError extends Error {
   }
 }
 
-/** "ニチ、ニ、 ジツ" → ["ニチ", "ニ", "ジツ"]; "-" → []. Display formatting only. */
+/** "ニチ、ニ、 ジツ" → ["ニチ", "ニ", "ジツ"]; "-", "–" or "—" → []. Display formatting only. */
 function splitReadings(value: string): string[] {
-  if (value.trim() === "-") return [];
+  if (["-", "–", "—"].includes(value.trim())) return [];
   return value
     .split("、")
     .map((reading) => reading.trim())

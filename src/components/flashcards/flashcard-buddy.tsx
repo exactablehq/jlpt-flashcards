@@ -1,12 +1,12 @@
-import Image from "next/image";
 import type { ReactNode } from "react";
-import { withBasePath } from "@/lib/paths";
+import { MeowBuddy } from "@/components/ui/meow-buddy";
 
 /**
  * Baby Casper keeps learners company, sitting still over the bottom-left
  * corner of the flashcard and hanging a little below it; on wide screens he
  * straddles the card's left edge. When `message` is set he says it in a comic
- * speech bubble. Purely decorative, and never blocks taps on the card.
+ * speech bubble. Only Casper himself takes clicks (for a quick "meow"); the
+ * space around him never blocks taps on the card.
  */
 export function FlashcardBuddy({ message }: { message?: ReactNode }) {
   return (
@@ -28,14 +28,8 @@ export function FlashcardBuddy({ message }: { message?: ReactNode }) {
           />
         </span>
       )}
-      <Image
-        src={withBasePath("/images/caspu.webp")}
-        alt=""
-        aria-hidden="true"
-        width={480}
-        height={591}
-        className="h-auto w-full drop-shadow-[4px_5px_0_rgb(173_77_102_/_0.32)]"
-      />
+      {/* Easter egg: only Casper himself takes clicks, for a quick "meow". */}
+      <MeowBuddy className="h-auto w-full drop-shadow-[4px_5px_0_rgb(173_77_102_/_0.32)]" />
     </span>
   );
 }

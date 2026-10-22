@@ -40,8 +40,8 @@
     },
     {
       "id": "n5-0003",
-      "japanese": "あのひと [あの かた]",
-      "meaning": "That person; he/she (あのかた is more polite)",
+      "japanese": "あのひと",
+      "meaning": "That person (he or she)",
       "type": "Pronoun",
       "verb_group": null,
       "lesson": "Lesson 1",
@@ -381,7 +381,7 @@
     {
       "id": "n5-0037",
       "japanese": "カード",
-      "meaning": "(credit) card",
+      "meaning": "card (credit/debit)",
       "type": "Noun",
       "verb_group": null,
       "lesson": "Lesson 2",

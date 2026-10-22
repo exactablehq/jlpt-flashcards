@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/page-header";
 import { DataTable, type Column } from "@/components/study/data-table";
+import { ListBuddy } from "@/components/study/list-buddy";
 import { ButtonLink } from "@/components/ui/button";
 import { PrintButton } from "@/components/ui/print-button";
 import { getSection } from "@/config/sections";
@@ -37,6 +38,21 @@ export default async function KanjiPage({ params }: Props) {
     },
   }));
 
+  // Pop-up data card for each kanji, opened by clicking its row.
+  const details = Object.fromEntries(
+    entries.map((entry) => [
+      entry.id,
+      {
+        character: entry.kanji,
+        primary: entry.meaning,
+        details: [
+          { label: "On'yomi", value: formatReadings(entry.onyomi) },
+          { label: "Kun'yomi", value: formatReadings(entry.kunyomi) },
+        ],
+      },
+    ]),
+  );
+
   return (
     <div className="mx-auto w-full max-w-3xl py-8 sm:py-12">
       <p className="mb-4 hidden text-sm print:block">JLPTFlashcards · {level.label} Kanji</p>
@@ -57,7 +73,8 @@ export default async function KanjiPage({ params }: Props) {
         }
       />
 
-      <DataTable caption={`${level.label} kanji`} columns={columns} rows={rows} centerRows />
+      <DataTable caption={`${level.label} kanji`} columns={columns} rows={rows} details={details} centerRows />
+      <ListBuddy />
     </div>
   );
 }

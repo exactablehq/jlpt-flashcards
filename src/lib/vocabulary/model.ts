@@ -28,6 +28,8 @@ export interface VocabEntry {
   meaning: string;
   type: VocabType;
   verbGroup: VerbGroup | null;
+  /** Textbook lesson the word was studied in, e.g. "Lesson 1". */
+  lesson: string;
 }
 
 export interface VocabCategory {
@@ -135,6 +137,10 @@ export function parseVocabFile(raw: unknown, expectedLevel: string, source: stri
       problems.push(`${where}: missing japanese`);
       ok = false;
     }
+    if (!isNonEmptyString(e.lesson)) {
+      problems.push(`${where}: missing lesson`);
+      ok = false;
+    }
     if (!isNonEmptyString(e.meaning)) {
       problems.push(`${where}: missing meaning`);
       ok = false;
@@ -161,6 +167,7 @@ export function parseVocabFile(raw: unknown, expectedLevel: string, source: stri
         meaning: e.meaning as string,
         type: e.type as VocabType,
         verbGroup: (e.verb_group as VerbGroup | null) ?? null,
+        lesson: e.lesson as string,
       });
     }
   });
@@ -187,4 +194,13 @@ export function filterByCategory(entries: readonly VocabEntry[], category: Vocab
   const { types } = category;
   if (types === "all") return [...entries];
   return entries.filter((entry) => types.includes(entry.type));
+}
+
+/**
+ * Groups entries by type in VOCAB_TYPES order (nouns, pronouns, verbs, …),
+ * keeping the study order within each type.
+ */
+export function sortByType(entries: readonly VocabEntry[]): VocabEntry[] {
+  const rank = (entry: VocabEntry) => VOCAB_TYPES.indexOf(entry.type);
+  return [...entries].sort((a, b) => rank(a) - rank(b));
 }

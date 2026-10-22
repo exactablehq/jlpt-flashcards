@@ -14,14 +14,14 @@ export const SECTIONS: readonly StudySection[] = [
     title: "Hiragana",
     jp: "ひらがな",
     glyph: "あ",
-    description: "The basic Japanese syllabary: chart and flashcards.",
+    description: "The basic Japanese syllabary.",
   },
   {
     slug: "katakana",
     title: "Katakana",
     jp: "カタカナ",
     glyph: "ア",
-    description: "The syllabary for loanwords and names: chart and flashcards.",
+    description: "The syllabary for loanwords and names.",
   },
   {
     slug: "vocabulary",

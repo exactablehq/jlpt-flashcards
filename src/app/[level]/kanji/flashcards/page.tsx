@@ -35,7 +35,12 @@ export default async function KanjiFlashcardsPage({ params }: Props) {
         }
       />
 
-      <FlashcardDeck cards={toKanjiCards(getKanji(level.id))} storageKey={`${level.id}:kanji:all`} noun="kanji" strokeOrder />
+      <FlashcardDeck
+        cards={toKanjiCards(getKanji(level.id))}
+        storageKey={`${level.id}:kanji:all`}
+        noun="kanji"
+        strokeOrder
+      />
 
       <StrokeOrderCredit />
     </div>

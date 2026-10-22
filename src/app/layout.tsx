@@ -45,7 +45,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${zenMaru.variable} ${mincho.variable} ${klee.variable} h-full antialiased`}>
-      <body className="relative flex min-h-full flex-col font-sans">
+      <body className="relative flex min-h-dvh flex-col font-sans">
         <SiteBackground />
         <SiteHeader />
         <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-4 sm:px-6">{children}</main>

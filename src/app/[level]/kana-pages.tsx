@@ -4,6 +4,7 @@ import { StrokeOrderCredit } from "@/components/flashcards/stroke-order-credit";
 import { PageHeader } from "@/components/layout/page-header";
 import { ChipNav } from "@/components/study/chip-nav";
 import { KanaChart } from "@/components/study/kana-chart";
+import { ListBuddy } from "@/components/study/list-buddy";
 import { ButtonLink } from "@/components/ui/button";
 import { PrintButton } from "@/components/ui/print-button";
 import { getSection } from "@/config/sections";
@@ -82,11 +83,17 @@ export async function KanaChartPage({ params, script }: { params: Promise<{ leve
                   Flashcards →
                 </ButtonLink>
               </div>
-              <KanaChart caption={`${section.title}: ${info.title}`} rows={buildChart(groupEntries)} />
+              <KanaChart
+                caption={`${section.title}: ${info.title}`}
+                rows={buildChart(groupEntries)}
+                note={`${section.title} · ${info.title}`}
+              />
             </section>
           );
         })}
       </div>
+
+      <ListBuddy />
     </div>
   );
 }

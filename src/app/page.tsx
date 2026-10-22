@@ -1,11 +1,17 @@
 import { CasperMessage } from "@/components/home/casper-message";
+import { CraftedBy } from "@/components/home/crafted-by";
+import { CreatorsNote } from "@/components/home/creators-note";
 import { LevelCard } from "@/components/home/level-card";
+import { VisitCounter } from "@/components/home/visit-counter";
 import { SpeechBubble, Squiggle } from "@/components/ui/comic";
 import { LEVELS } from "@/config/levels";
 
 export default function Home() {
   return (
     <>
+      {/* Sits directly under the header wordmark. */}
+      <CraftedBy />
+
       {/* Extra bottom padding lifts the content slightly, balancing Casper in the corner. */}
       <section
         aria-labelledby="welcome-heading"
@@ -36,6 +42,8 @@ export default function Home() {
       </section>
 
       <CasperMessage />
+      <CreatorsNote />
+      <VisitCounter />
     </>
   );
 }

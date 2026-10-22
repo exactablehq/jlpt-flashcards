@@ -21,13 +21,16 @@ function splitHint(text: string): { word: string; hint: string | null } {
   return match ? { word: match[1], hint: match[2] } : { word: text, hint: null };
 }
 
+// On phones each size is capped so the longest word in its bucket fits the
+// card's width (screen minus page gutters and card padding, ≈5rem); from `sm`
+// up the card is wide enough for the fixed sizes.
 function frontSize(word: string): string {
   const length = [...word].length;
-  if (length === 1) return "text-8xl sm:text-9xl";
-  if (length <= 3) return "text-7xl sm:text-8xl";
-  if (length <= 6) return "text-6xl sm:text-7xl";
-  if (length <= 9) return "text-5xl sm:text-6xl";
-  return "text-4xl sm:text-5xl";
+  if (length === 1) return "text-[length:min(6rem,calc(100vw_-_5rem))] sm:text-9xl";
+  if (length <= 3) return "text-[length:min(4.5rem,calc((100vw_-_5rem)/3))] sm:text-8xl";
+  if (length <= 6) return "text-[length:min(3.75rem,calc((100vw_-_5rem)/6))] sm:text-7xl";
+  if (length <= 9) return "text-[length:min(3rem,calc((100vw_-_5rem)/9))] sm:text-6xl";
+  return "text-[length:max(1.5rem,min(2.25rem,calc((100vw_-_5rem)/12)))] sm:text-5xl";
 }
 
 // Comic panel faces: chunky outline and a solid offset shadow. On phones and
@@ -57,7 +60,7 @@ export function Flashcard({ card, flipped, onFlip, isReview }: FlashcardProps) {
           {/* Front */}
           <div className={`${face} bg-white`}>
             {isReview && (
-              <span className="absolute top-4 left-4 -rotate-6 rounded-full border-2 border-accent bg-sakura-soft px-2.5 py-0.5 text-xs font-bold text-accent">
+              <span className="absolute top-4 left-15 -rotate-6 rounded-full border-2 border-accent bg-sakura-soft px-2.5 py-0.5 text-xs font-bold text-accent">
                 Review
               </span>
             )}
@@ -69,16 +72,19 @@ export function Flashcard({ card, flipped, onFlip, isReview }: FlashcardProps) {
                 {hint}
               </span>
             )}
-            <span className="font-study absolute bottom-5 text-sm text-ink-muted/80">tap to reveal ✿</span>
+            <span className="font-study absolute bottom-5 text-sm text-ink-muted/80">
+              <span className="hidden pointer-coarse:inline">tap</span>
+              <span className="pointer-coarse:hidden">click</span> to reveal ✿
+            </span>
           </div>
 
           {/* Back */}
           <div className={`${face} rotate-y-180 bg-[#fff7f9]`}>
-            <span lang="ja" className="font-study text-xl text-ink-muted sm:text-2xl">
+            <span lang="ja" className="font-study text-[length:clamp(1rem,5vw,1.25rem)] text-ink-muted sm:text-2xl">
               {card.front}
             </span>
             <Squiggle className="my-3 w-16" />
-            <span className="font-display comic-text max-w-md text-2xl leading-snug font-semibold text-balance text-ink sm:text-3xl">
+            <span className="font-display comic-text max-w-md text-[length:clamp(1.25rem,6vw,1.5rem)] leading-snug font-semibold text-balance text-ink sm:text-3xl">
               {card.back}
             </span>
             {card.note && (

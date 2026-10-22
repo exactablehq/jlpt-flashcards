@@ -40,11 +40,11 @@ export function CasperMessage() {
   }, [open]);
 
   return (
-    // On wide screens Casper sits in the misty open area above the left-hand rocks, lifted above the
-    // footer line. The left offset grows with the screen (≈153px at 1280px, ≈286px at 1920px).
+    // Below 1280px Casper sits just above the footer text. On wide screens he sits in the misty open
+    // area above the left-hand rocks. The left offset grows with the screen (≈153px at 1280px, ≈286px at 1920px).
     <div
       ref={rootRef}
-      className="casper no-print absolute bottom-6 left-6 z-20 sm:bottom-8 sm:left-8 xl:bottom-[4.5rem] xl:left-[calc(20.8vw-7rem)]"
+      className="casper no-print absolute bottom-28 left-6 z-20 sm:bottom-36 sm:left-8 xl:bottom-[4.5rem] xl:left-[calc(20.8vw-7rem)]"
     >
       <div
         id="casper-message"
@@ -68,7 +68,7 @@ export function CasperMessage() {
           ×
         </button>
         {/* Same hand-lettered font as "Welcome to" in the hero. */}
-        <p className="font-study mb-2 pr-6 text-xl text-accent">meow</p>
+        <p className="font-study mb-2 pr-6 text-xl text-accent">meow ✿</p>
         <div className="font-study space-y-2 text-base leading-relaxed text-ink">
           {MESSAGE.map((line) => (
             <p key={line}>{line}</p>
@@ -99,7 +99,7 @@ export function CasperMessage() {
             open ? "scale-90 opacity-0" : "opacity-100"
           }`}
         >
-          <span className="relative block rounded-[1.25rem] border-[1.5px] border-accent/70 bg-white px-3 py-1.5 text-[0.7rem] font-medium text-ink shadow-[2px_3px_0_0_rgb(173_77_102_/_0.25)] sm:text-xs">
+          <span className="relative block rounded-[1.25rem] border-[1.5px] border-accent/70 bg-white px-4 py-2 text-sm font-medium text-ink shadow-[2px_3px_0_0_rgb(173_77_102_/_0.25)] sm:text-base">
             Baby Casper has a message for you
             {/* Tail pointing down at Casper. */}
             <span

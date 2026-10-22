@@ -28,3 +28,13 @@ export function removeStored(key: string): void {
     // Nothing to do.
   }
 }
+
+/** Removes saved progress for every deck on this device. */
+export function clearAllStored(): void {
+  try {
+    const keys = Object.keys(window.localStorage).filter((key) => key.startsWith(PREFIX));
+    for (const key of keys) window.localStorage.removeItem(key);
+  } catch {
+    // Nothing to do.
+  }
+}

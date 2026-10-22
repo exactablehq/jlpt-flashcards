@@ -17,7 +17,7 @@ function strokeFile(kanji: string): string {
   return withBasePath(`/stroke-order/${hex}.json`);
 }
 
-/** "View stroke order" button plus the dialog that animates the kanji being written. */
+/** "Stroke order" button plus the dialog that animates the kanji being written. */
 export function StrokeOrderButton({ character }: { character: string }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
@@ -32,7 +32,7 @@ export function StrokeOrderButton({ character }: { character: string }) {
           setOpen(true);
         }}
       >
-        View stroke order
+        Stroke order
       </Button>
       <dialog
         ref={dialogRef}
@@ -51,6 +51,24 @@ export function StrokeOrderButton({ character }: { character: string }) {
 }
 
 function StrokeOrderPanel({ kanji, onClose }: { kanji: string; onClose: () => void }) {
+  return (
+    <div className="relative px-6 pt-5 pb-6 text-center">
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close stroke order"
+        className="absolute top-3 right-3 flex size-8 items-center justify-center rounded-full text-lg text-ink-muted transition-colors hover:bg-sakura-soft hover:text-ink"
+      >
+        ×
+      </button>
+      <p className="font-study text-xl text-accent">stroke order ✿</p>
+      <StrokeOrderView character={kanji} />
+    </div>
+  );
+}
+
+/** Animated stroke order for one character, with a replay button and the data credit. */
+export function StrokeOrderView({ character: kanji }: { character: string }) {
   const [data, setData] = useState<Strokes>({ status: "loading" });
   const [replay, setReplay] = useState(0);
 
@@ -71,17 +89,7 @@ function StrokeOrderPanel({ kanji, onClose }: { kanji: string; onClose: () => vo
   }, [kanji]);
 
   return (
-    <div className="relative px-6 pt-5 pb-6 text-center">
-      <button
-        type="button"
-        onClick={onClose}
-        aria-label="Close stroke order"
-        className="absolute top-3 right-3 flex size-8 items-center justify-center rounded-full text-lg text-ink-muted transition-colors hover:bg-sakura-soft hover:text-ink"
-      >
-        ×
-      </button>
-      <p className="font-study text-xl text-accent">stroke order ✿</p>
-
+    <div>
       <div className="mx-auto mt-4 aspect-square w-full max-w-[15rem] rounded-2xl border-2 border-sakura bg-paper">
         {data.status === "loading" && (
           <p className="flex size-full items-center justify-center text-sm text-ink-muted">Loading…</p>

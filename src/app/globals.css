@@ -150,6 +150,28 @@ body {
   @apply border-b border-line/70 last:border-0 even:bg-sakura-soft/35 print:border-neutral-300;
 }
 
+/*
+ * Rows that open a data card: a clear sakura highlight with a pink bar down the
+ * left edge on hover (stronger than the striped rows), and an enlarged character.
+ */
+.study-table tbody tr.clickable-row {
+  @apply cursor-pointer transition-[background-color,box-shadow] duration-150;
+}
+
+.study-table tbody tr.clickable-row:hover,
+.study-table tbody tr.clickable-row:focus-within {
+  @apply bg-sakura/35;
+  box-shadow: inset 4px 0 0 0 var(--accent);
+}
+
+.study-table tr.clickable-row td.jp-lg {
+  @apply transition-[color,scale] duration-150;
+}
+
+.study-table tr.clickable-row:hover td.jp-lg {
+  @apply scale-110 text-accent;
+}
+
 .study-table .mobile-hidden {
   @apply hidden sm:table-cell print:table-cell;
 }
@@ -161,6 +183,34 @@ body {
   animation-name: stroke-draw;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
+}
+
+/*
+ * Casper's easter-egg "meow": pops up, stays for 4 seconds, then floats away.
+ * Each click remounts the bubble, so the 4 seconds restart from the latest click.
+ */
+.meow-pop {
+  animation: meow-pop 4.4s ease-out forwards;
+}
+
+@keyframes meow-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 6px) scale(0.6) rotate(-6deg);
+  }
+  3% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1.05) rotate(-3deg);
+  }
+  6%,
+  91% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1) rotate(-3deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -14px) scale(0.95) rotate(-3deg);
+  }
 }
 
 @keyframes stroke-draw {
@@ -189,11 +239,12 @@ body {
 
 /*
  * Baby Casper (homepage) sits in the bottom-left corner. Below 1280px the
- * centered footer text would reach him, so leave room under the footer.
+ * centered footer text would reach him, so he sits just above the footer
+ * instead; leave room for him under the page content.
  */
 @media (max-width: 1279px) {
-  body:has(.casper) > footer {
-    padding-bottom: 12rem;
+  body:has(.casper) > main {
+    padding-bottom: 11rem;
   }
 }
 

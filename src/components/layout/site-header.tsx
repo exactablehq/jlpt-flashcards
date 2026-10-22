@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { HeaderNav } from "./header-nav";
 
-/** Centered wordmark, placed in the open space at the top of the painting. */
+/** Centered wordmark, placed in the open space at the top of the painting, with Back and the decks menu at top left. */
 export function SiteHeader() {
   return (
-    <header className="no-print flex justify-center px-4 pt-6 sm:pt-8">
+    <header className="no-print relative flex justify-center px-4 pt-6 sm:pt-8">
+      <HeaderNav />
       <Link
         href="/"
         aria-label="JLPTFlashcards home"

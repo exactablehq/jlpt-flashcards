@@ -31,9 +31,10 @@ export default async function LevelDashboard({ params }: PageProps<"/[level]">) 
         description="Choose where to begin. Each section has study charts you can print and flashcards to practise with."
         breadcrumbs={[{ label: "Home", href: routes.home }, { label: level.label }]}
       />
-      <ul className="grid gap-4 sm:grid-cols-2">
+      {/* Equal-height rows, and each card fills its cell, so all four cards are the same size. */}
+      <ul className="grid auto-rows-fr gap-4 sm:grid-cols-2">
         {SECTIONS.map((section) => (
-          <li key={section.slug}>
+          <li key={section.slug} className="[&>a]:h-full">
             <LinkCard
               href={routes.section(level.id, section.slug)}
               glyph={section.glyph}

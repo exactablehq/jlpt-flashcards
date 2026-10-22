@@ -1,4 +1,5 @@
 import type { LevelId } from "@/config/levels";
+import { packGroups } from "@/lib/flashcards/batching";
 import type { DeckCard } from "@/lib/flashcards/types";
 import n5Vocab from "@data/N5_vocab.json";
 import {
@@ -51,4 +52,14 @@ export function toVocabCards(entries: readonly VocabEntry[], { showType }: { sho
         ? `Group ${entry.verbGroup} verb`
         : undefined,
   }));
+}
+
+/** Flashcard sets of about 50 words, made of whole lessons in study order. */
+export function toLessonSets(entries: readonly VocabEntry[]): string[][] {
+  const lessons: string[][] = [];
+  entries.forEach((entry, i) => {
+    if (i === 0 || entry.lesson !== entries[i - 1].lesson) lessons.push([]);
+    lessons[lessons.length - 1].push(entry.id);
+  });
+  return packGroups(lessons);
 }

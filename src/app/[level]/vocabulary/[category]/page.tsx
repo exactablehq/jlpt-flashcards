@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/page-header";
 import { CategoryNav } from "@/components/study/category-nav";
 import { DataTable, type Column } from "@/components/study/data-table";
+import { ListBuddy } from "@/components/study/list-buddy";
 import { ButtonLink } from "@/components/ui/button";
 import { PrintButton } from "@/components/ui/print-button";
 import { routes } from "@/lib/routes";
-import { VOCAB_TYPE_LABELS, describeVerbGroups } from "@/lib/vocabulary";
+import { VOCAB_TYPE_LABELS, describeVerbGroups, sortByType } from "@/lib/vocabulary";
 import { categoryStaticParams, resolveCategory } from "./params";
 
 export const dynamicParams = false;
@@ -28,11 +29,13 @@ export default async function CategoryWordList({ params }: Props) {
     { key: "n", header: "#", hideOnMobile: true, className: "w-12 tabular-nums" },
     { key: "japanese", header: "Japanese", japanese: true },
     { key: "meaning", header: "Meaning" },
-    ...(isAll ? [{ key: "type", header: "Type", className: "whitespace-nowrap" }] : []),
-    ...(isVerbs ? [{ key: "group", header: "Group", className: "whitespace-nowrap" }] : []),
+    ...(isAll ? [{ key: "type", header: "Type", className: "whitespace-nowrap", filterable: true }] : []),
+    ...(isVerbs ? [{ key: "group", header: "Group", className: "whitespace-nowrap", filterable: true }] : []),
   ];
 
-  const rows = entries.map((entry, i) => ({
+  // The full list is grouped by type; flashcards keep the study order (see the flashcards page).
+  const listed = isAll ? sortByType(entries) : entries;
+  const rows = listed.map((entry, i) => ({
     id: entry.id,
     cells: {
       n: String(i + 1),
@@ -51,7 +54,8 @@ export default async function CategoryWordList({ params }: Props) {
         title={category.label}
         description={
           <>
-            {entries.length} words{verbGroups && <> ({verbGroups})</>}, in the order they were studied.
+            {entries.length} words{verbGroups && <> ({verbGroups})</>},{" "}
+            {isAll ? "grouped by type" : "in the order they were studied"}.
           </>
         }
         breadcrumbs={[
@@ -71,6 +75,7 @@ export default async function CategoryWordList({ params }: Props) {
       <DataTable caption={`${level.label} vocabulary: ${category.label}`} columns={columns} rows={rows} />
 
       <CategoryNav level={level.id} current={category.slug} view="list" />
+      <ListBuddy />
     </div>
   );
 }

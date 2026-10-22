@@ -1,33 +1,28 @@
-// Batch selection for flashcard decks. This module has no imports so it can be
+// Set selection for flashcard decks. This module has no imports so it can be
 // tested on its own, independent of React and the bundler.
 //
-// A "round" goes through every card in a deck once, in batches of up to 50.
-// The first batch is all new cards. Each later batch ("See More") mixes mostly
-// new cards with a few cards from earlier batches for review, then shuffles.
-// When every card has been dealt, the learner can start a new round.
+// Every deck is split into fixed sets of about 50 cards, in study order:
+// vocabulary keeps whole lessons together, other decks are split evenly.
+// A set always holds the same cards; its order is shuffled each time it is
+// opened. Learners can move freely between sets.
 
 export const BATCH_SIZE = 50;
-/** Review cards mixed into each new full batch: 3–5 of 50 is 6–10%. */
-export const REVIEW_MIN = 3;
-export const REVIEW_MAX = 5;
-/** Keeps reviews at or below 10% of any batch: at most 1 review per 9 new cards. */
-const NEW_PER_REVIEW = 9;
 
 export type Rng = () => number;
-/** "ordered" deals new cards in the original learning order; "random" draws them at random. */
-export type RoundMode = "ordered" | "random";
 
 export interface DeckProgress {
   version: 1;
-  mode: RoundMode;
-  /** IDs dealt so far this round, oldest first. Includes the current batch. */
+  /** Kept for compatibility with progress saved by older versions. */
+  mode: "ordered" | "random";
+  /** IDs in every set opened so far. */
   seen: string[];
-  /** The current batch, in display order. */
+  /** The current set, in display order. */
   batch: string[];
-  /** IDs in the current batch that were dealt in an earlier batch. */
+  /** Unused now; kept so older saved progress still loads. */
   review: string[];
+  /** 1-based number of the current set. */
   batchNumber: number;
-  /** Position of the current card within `batch`. */
+  /** Position within `batch`; `batch.length` is the "end of set" card. */
   index: number;
 }
 
@@ -40,62 +35,61 @@ export function shuffle<T>(items: readonly T[], rng: Rng): T[] {
   return result;
 }
 
-function randomInt(min: number, max: number, rng: Rng): number {
-  return min + Math.floor(rng() * (max - min + 1));
-}
-
-function unseenIds(allIds: readonly string[], seen: readonly string[]): string[] {
-  const seenSet = new Set(seen);
-  return allIds.filter((id) => !seenSet.has(id));
-}
-
 export function countUnseen(allIds: readonly string[], progress: DeckProgress): number {
-  return unseenIds(allIds, progress.seen).length;
+  const seen = new Set(progress.seen);
+  return allIds.filter((id) => !seen.has(id)).length;
 }
 
-export function isRoundComplete(allIds: readonly string[], progress: DeckProgress): boolean {
-  return countUnseen(allIds, progress) === 0;
-}
-
-/** Starts a fresh round. In ordered mode the first batch keeps the original order. */
-export function startRound(allIds: readonly string[], mode: RoundMode, rng: Rng): DeckProgress {
-  const pool = mode === "ordered" ? [...allIds] : shuffle(allIds, rng);
-  const first = pool.slice(0, BATCH_SIZE);
-  return { version: 1, mode, seen: first, batch: first, review: [], batchNumber: 1, index: 0 };
+/** Splits IDs into the fewest sets of at most `size`, as equal as possible (e.g. 110 → 37, 37, 36). */
+export function splitEvenly(ids: readonly string[], size = BATCH_SIZE): string[][] {
+  const count = Math.max(1, Math.ceil(ids.length / size));
+  const sets: string[][] = [];
+  for (let i = 0; i < count; i++) {
+    sets.push(ids.slice(Math.round((i * ids.length) / count), Math.round(((i + 1) * ids.length) / count)));
+  }
+  return sets;
 }
 
 /**
- * Deals the next batch: up to 50 cards, normally 45–47 new and 3–5 review,
- * shuffled together. Returns null when every card has already been dealt.
+ * Packs consecutive groups (e.g. lessons) into sets as close to BATCH_SIZE as
+ * possible without splitting a group. Minimises the total squared distance
+ * from BATCH_SIZE, so sets land around 35–65 instead of one tiny leftover.
  */
-export function dealNextBatch(allIds: readonly string[], progress: DeckProgress, rng: Rng): DeckProgress | null {
-  const unseen = unseenIds(allIds, progress.seen);
-  if (unseen.length === 0) return null;
-
-  let reviewCount = Math.min(randomInt(REVIEW_MIN, REVIEW_MAX, rng), Math.floor(unseen.length / NEW_PER_REVIEW));
-  // If all remaining new cards fit in one batch, deal them all and only use spare room for reviews.
-  if (unseen.length <= BATCH_SIZE) reviewCount = Math.min(reviewCount, BATCH_SIZE - unseen.length);
-
-  // Prefer reviews from before the batch just finished, so repeats are spaced out.
-  const current = new Set(progress.batch);
-  const older = progress.seen.filter((id) => !current.has(id));
-  const reviewPool = older.length >= reviewCount ? older : progress.seen;
-  const review = shuffle(reviewPool, rng).slice(0, reviewCount);
-
-  const newCount = Math.min(unseen.length, BATCH_SIZE - review.length);
-  const fresh = (progress.mode === "ordered" ? unseen : shuffle(unseen, rng)).slice(0, newCount);
-
-  return {
-    ...progress,
-    seen: [...progress.seen, ...fresh],
-    batch: shuffle([...fresh, ...review], rng),
-    review,
-    batchNumber: progress.batchNumber + 1,
-    index: 0,
-  };
+export function packGroups(groups: readonly (readonly string[])[], target = BATCH_SIZE): string[][] {
+  const n = groups.length;
+  const best = [0, ...Array<number>(n).fill(Infinity)];
+  const cut = Array<number>(n + 1).fill(0);
+  for (let end = 1; end <= n; end++) {
+    let size = 0;
+    for (let start = end - 1; start >= 0; start--) {
+      size += groups[start].length;
+      const cost = best[start] + (size - target) ** 2;
+      if (cost < best[end]) {
+        best[end] = cost;
+        cut[end] = start;
+      }
+      if (size > target * 2) break;
+    }
+  }
+  const sets: string[][] = [];
+  for (let end = n; end > 0; end = cut[end]) sets.unshift(groups.slice(cut[end], end).flat());
+  return sets;
 }
 
-/** Reorders the current batch (always into a different order when possible) without changing what's in it. */
+/** Opens set `number` (1-based), freshly shuffled, at its first card. */
+export function goToSet(
+  sets: readonly (readonly string[])[],
+  progress: DeckProgress | null,
+  number: number,
+  rng: Rng,
+): DeckProgress {
+  const n = Math.min(Math.max(number, 1), sets.length);
+  const set = sets[n - 1];
+  const seen = progress ? [...new Set([...progress.seen, ...set])] : [...set];
+  return { version: 1, mode: "ordered", seen, batch: shuffle(set, rng), review: [], batchNumber: n, index: 0 };
+}
+
+/** Reorders the current set (always into a different order when possible) and goes back to its first card. */
 export function shuffleBatch(progress: DeckProgress, rng: Rng): DeckProgress {
   let batch = shuffle(progress.batch, rng);
   for (let attempt = 0; attempt < 10 && batch.length > 1 && batch.every((id, i) => id === progress.batch[i]); attempt++) {
@@ -105,15 +99,21 @@ export function shuffleBatch(progress: DeckProgress, rng: Rng): DeckProgress {
 }
 
 /**
- * Validates progress read from storage against the deck's current cards.
- * Unknown IDs (e.g. after a data update) are dropped. Returns null if nothing usable remains.
+ * Validates progress read from storage against the deck's current sets.
+ * If the saved set no longer matches (e.g. after a data update, or progress
+ * saved before sets were fixed), that set is reopened from its start.
+ * Returns null if nothing usable remains.
  */
-export function reconcileProgress(saved: unknown, allIds: readonly string[]): DeckProgress | null {
+export function reconcileProgress(
+  saved: unknown,
+  sets: readonly (readonly string[])[],
+  rng: Rng,
+): DeckProgress | null {
   if (!saved || typeof saved !== "object") return null;
   const s = saved as Record<string, unknown>;
-  if (s.version !== 1 || (s.mode !== "ordered" && s.mode !== "random")) return null;
+  if (s.version !== 1) return null;
 
-  const valid = new Set(allIds);
+  const valid = new Set(sets.flat());
   const clean = (value: unknown): string[] =>
     Array.isArray(value)
       ? [...new Set(value.filter((id): id is string => typeof id === "string" && valid.has(id)))]
@@ -122,14 +122,14 @@ export function reconcileProgress(saved: unknown, allIds: readonly string[]): De
   const batch = clean(s.batch);
   if (batch.length === 0) return null;
   const seen = clean(s.seen);
-  const seenSet = new Set(seen);
-  for (const id of batch) if (!seenSet.has(id)) seen.push(id);
-  const inBatch = new Set(batch);
-  const review = clean(s.review).filter((id) => inBatch.has(id));
 
-  const batchNumber = typeof s.batchNumber === "number" && Number.isInteger(s.batchNumber) && s.batchNumber > 0 ? s.batchNumber : 1;
+  const rawNumber = typeof s.batchNumber === "number" && Number.isInteger(s.batchNumber) ? s.batchNumber : 1;
+  const batchNumber = Math.min(Math.max(rawNumber, 1), sets.length);
+  const set = sets[batchNumber - 1];
+  const matches = batch.length === set.length && batch.every((id) => set.includes(id));
+  if (!matches) return goToSet(sets, { ...(s as unknown as DeckProgress), seen }, batchNumber, rng);
+
   const rawIndex = typeof s.index === "number" && Number.isInteger(s.index) ? s.index : 0;
-  const index = Math.min(Math.max(rawIndex, 0), batch.length - 1);
-
-  return { version: 1, mode: s.mode, seen, batch, review, batchNumber, index };
+  const index = Math.min(Math.max(rawIndex, 0), batch.length);
+  return { version: 1, mode: "ordered", seen: [...new Set([...seen, ...batch])], batch, review: [], batchNumber, index };
 }

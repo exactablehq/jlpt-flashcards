@@ -5,6 +5,15 @@ import { LevelCard } from "@/components/home/level-card";
 import { VisitCounter } from "@/components/home/visit-counter";
 import { SpeechBubble, Squiggle } from "@/components/ui/comic";
 import { LEVELS } from "@/config/levels";
+import { getKanji } from "@/lib/kanji";
+import { pageMetadata } from "@/lib/seo";
+import { getVocabulary } from "@/lib/vocabulary";
+
+export const metadata = pageMetadata({
+  title: "JLPT N5 Flashcards: Free Vocabulary, Kanji & Kana",
+  description: `Free JLPT N5 flashcards and printable study lists: ${getVocabulary("n5").length} vocabulary words, ${getKanji("n5").length} kanji with stroke order, and hiragana and katakana charts. No sign-up, no ads.`,
+  path: "/",
+});
 
 export default function Home() {
   return (
@@ -22,7 +31,7 @@ export default function Home() {
         </SpeechBubble>
 
         <h1 id="welcome-heading" className="mt-6 short:sm:mt-4">
-          <span className="font-study block text-xl text-ink-muted sm:text-3xl">Welcome to</span>
+          <span className="font-study block text-xl text-ink-muted sm:text-3xl">Welcome to</span>{" "}
           <span className="font-display mt-1 block text-[2.6rem] leading-tight font-semibold tracking-tight text-ink [text-shadow:3px_3px_0_rgb(232_165_180_/_0.45)] sm:text-7xl sm:[text-shadow:5px_5px_0_rgb(232_165_180_/_0.45)] short:sm:text-6xl">
             {/* Pink on a pink shadow looks doubled, so "JLPT" gets a faint charcoal shadow instead. */}
             <span className="text-accent [text-shadow:3px_3px_0_rgb(59_50_54_/_0.13)] sm:[text-shadow:5px_5px_0_rgb(59_50_54_/_0.13)]">

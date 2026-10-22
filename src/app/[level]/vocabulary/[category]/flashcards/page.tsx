@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { CategoryNav } from "@/components/study/category-nav";
 import { ButtonLink } from "@/components/ui/button";
 import { routes } from "@/lib/routes";
+import { pageMetadata } from "@/lib/seo";
 import { toLessonSets, toVocabCards } from "@/lib/vocabulary";
 import { categoryStaticParams, resolveCategory } from "../params";
 
@@ -13,8 +14,16 @@ export const generateStaticParams = categoryStaticParams;
 type Props = PageProps<"/[level]/vocabulary/[category]/flashcards">;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { level, category } = await resolveCategory(params);
-  return { title: `${category.label} Flashcards · ${level.label}` };
+  const { level, category, entries } = await resolveCategory(params);
+  const n = entries.length;
+  const isAll = category.types === "all";
+  return pageMetadata({
+    title: isAll
+      ? `${level.label} Vocabulary Flashcards (${n} Words, Free)`
+      : `${level.label} ${category.label} Flashcards (Free, No Sign-up)`,
+    description: `Practise ${isAll ? `all ${n} ${level.label} words` : `${n} ${level.label} ${category.label.toLowerCase()}`} with free flashcards in shuffled sets of about 50. Tap to reveal the meaning; progress saves on your device.`,
+    path: routes.vocabFlashcards(level.id, category.slug),
+  });
 }
 
 export default async function CategoryFlashcards({ params }: Props) {

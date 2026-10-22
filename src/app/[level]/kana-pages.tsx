@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { FlashcardDeck } from "@/components/flashcards/flashcard-deck";
 import { StrokeOrderCredit } from "@/components/flashcards/stroke-order-credit";
@@ -20,10 +21,42 @@ import {
   type KanaScript,
 } from "@/lib/kana";
 import { requireLevel, routes } from "@/lib/routes";
+import { pageMetadata } from "@/lib/seo";
 
 // Shared by the Hiragana and Katakana routes, which differ only in `script`.
 
 export const kanaDeckParams = () => KANA_DECKS.map((deck) => ({ deck: deck.slug }));
+
+export async function kanaChartMetadata(params: Promise<{ level: string }>, script: KanaScript): Promise<Metadata> {
+  const level = requireLevel((await params).level);
+  const { title } = getSection(script);
+  const count = getKana(level.id, script).length;
+  return pageMetadata({
+    title: `${title} Chart with Romaji (Printable)`,
+    description: `All ${count} ${title.toLowerCase()} with romaji: basic, dakuten and handakuten charts. Click any character for its stroke order, print the chart or practise with free flashcards.`,
+    path: routes.section(level.id, script),
+  });
+}
+
+export async function kanaFlashcardsMetadata(
+  params: Promise<{ level: string; deck: string }>,
+  script: KanaScript,
+): Promise<Metadata> {
+  const { level: levelId, deck: deckSlug } = await params;
+  const level = requireLevel(levelId);
+  const deck = getKanaDeck(deckSlug);
+  if (!deck) notFound();
+  const { title } = getSection(script);
+  const count = getDeckEntries(level.id, script, deck).length;
+  const isAll = deck.slug === "all";
+  return pageMetadata({
+    title: isAll
+      ? `${title} Flashcards: All ${count} Characters (Free)`
+      : `${deck.label} ${title} Flashcards (${count} Characters)`,
+    description: `Practise ${count} ${isAll ? "" : `${deck.label.toLowerCase()} `}${title.toLowerCase()} with free flashcards: tap to reveal the romaji, work through shuffled sets and check each character's stroke order. No sign-up.`,
+    path: routes.kanaFlashcards(level.id, script, deck.slug),
+  });
+}
 
 function crumbs(levelId: string, levelLabel: string) {
   return [

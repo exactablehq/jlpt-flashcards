@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { requireLevel } from "@/lib/routes";
-import { KanaChartPage } from "../kana-pages";
+import { KanaChartPage, kanaChartMetadata } from "../kana-pages";
 
 type Props = PageProps<"/[level]/hiragana">;
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  return { title: `Hiragana · ${requireLevel((await params).level).label}` };
+export function generateMetadata({ params }: Props): Promise<Metadata> {
+  return kanaChartMetadata(params, "hiragana");
 }
 
 export default function HiraganaPage({ params }: Props) {

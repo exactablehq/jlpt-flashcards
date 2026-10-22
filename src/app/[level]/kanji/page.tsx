@@ -7,11 +7,18 @@ import { PrintButton } from "@/components/ui/print-button";
 import { getSection } from "@/config/sections";
 import { formatReadings, getKanji } from "@/lib/kanji";
 import { requireLevel, routes } from "@/lib/routes";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = PageProps<"/[level]/kanji">;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  return { title: `Kanji · ${requireLevel((await params).level).label}` };
+  const level = requireLevel((await params).level);
+  const count = getKanji(level.id).length;
+  return pageMetadata({
+    title: `${level.label} Kanji List (${count}) with Readings & Stroke Order`,
+    description: `All ${count} ${level.label} kanji with meanings, on'yomi and kun'yomi readings, and animated stroke order. Free printable list and flashcards.`,
+    path: routes.section(level.id, "kanji"),
+  });
 }
 
 const columns: Column[] = [

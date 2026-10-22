@@ -3,11 +3,17 @@ import { PageHeader } from "@/components/layout/page-header";
 import { ButtonLink } from "@/components/ui/button";
 import { comicPanel } from "@/components/ui/comic";
 import { requireLevel, routes } from "@/lib/routes";
-import { VOCAB_CATEGORIES, getCategoryEntries, type VocabCategory } from "@/lib/vocabulary";
+import { pageMetadata } from "@/lib/seo";
+import { VOCAB_CATEGORIES, getCategoryEntries, getVocabulary, type VocabCategory } from "@/lib/vocabulary";
 
 export async function generateMetadata({ params }: PageProps<"/[level]/vocabulary">): Promise<Metadata> {
   const level = requireLevel((await params).level);
-  return { title: `${level.label} Vocabulary` };
+  const count = getVocabulary(level.id).length;
+  return pageMetadata({
+    title: `${level.label} Vocabulary List by Category (${count} Words)`,
+    description: `${count} ${level.label} words sorted into ${VOCAB_CATEGORIES.length - 1} categories: nouns, verbs, adjectives, particles and more. Free printable word lists and flashcards.`,
+    path: routes.section(level.id, "vocabulary"),
+  });
 }
 
 function CategoryRow({ level, category, count }: { level: string; category: VocabCategory; count: number }) {

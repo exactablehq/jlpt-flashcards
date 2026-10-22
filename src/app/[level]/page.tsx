@@ -5,11 +5,16 @@ import { SECTIONS, type StudySection } from "@/config/sections";
 import { getKana } from "@/lib/kana";
 import { getKanji } from "@/lib/kanji";
 import { requireLevel, routes } from "@/lib/routes";
+import { pageMetadata } from "@/lib/seo";
 import { VOCAB_CATEGORIES, getVocabulary } from "@/lib/vocabulary";
 
 export async function generateMetadata({ params }: PageProps<"/[level]">): Promise<Metadata> {
   const level = requireLevel((await params).level);
-  return { title: level.label };
+  return pageMetadata({
+    title: `${level.label} Study Guide: Kana, Vocabulary & Kanji`,
+    description: `Everything for the ${level.label} in one place: hiragana and katakana charts, ${getVocabulary(level.id).length} vocabulary words by category and ${getKanji(level.id).length} kanji, each with free flashcards.`,
+    path: routes.level(level.id),
+  });
 }
 
 export default async function LevelDashboard({ params }: PageProps<"/[level]">) {

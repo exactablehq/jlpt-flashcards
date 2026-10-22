@@ -6,11 +6,18 @@ import { ButtonLink } from "@/components/ui/button";
 import { getSection } from "@/config/sections";
 import { getKanji, toKanjiCards } from "@/lib/kanji";
 import { requireLevel, routes } from "@/lib/routes";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = PageProps<"/[level]/kanji/flashcards">;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  return { title: `Kanji flashcards · ${requireLevel((await params).level).label}` };
+  const level = requireLevel((await params).level);
+  const count = getKanji(level.id).length;
+  return pageMetadata({
+    title: `${level.label} Kanji Flashcards (${count} Kanji, Free)`,
+    description: `Practise all ${count} ${level.label} kanji with free flashcards: meanings and readings on the back, stroke order for every kanji, and shuffled sets you can move between.`,
+    path: routes.kanjiFlashcards(level.id),
+  });
 }
 
 export default async function KanjiFlashcardsPage({ params }: Props) {

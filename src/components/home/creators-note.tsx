@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 
 const NOTE = [
-  "I don't own any of this data. These are just the notes I made while studying for my N5, tidied up so they're easier to revise from.",
-  "Words, kanji and readings come from multiple sources, and stroke order from KanjiVG. There may be a mistake or two, so do double-check with your own materials.",
+  "These are the notes I made while studying for my N5, tidied up and organised so they're easier to revise from. I hope they help you too!",
+  "English meanings come from the JMdict and KANJIDIC2 dictionaries, and stroke order from KanjiVG. There may be a mistake or two, so do double-check with your own materials.",
   "It's just me and my notes here, with no affiliation to the JLPT or any other organisation. Happy studying! ✿",
 ];
 
